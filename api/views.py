@@ -35,9 +35,10 @@ class GroupViewSet(viewsets.ModelViewSet):
 class CommentViewSet(viewsets.ModelViewSet):
 
     serializer_class = CommentSerializer
-    permission_classes = (
+    permission_classes = [
         permissions.IsAuthenticatedOrReadOnly,
-    )
+        IsAuthorOrReadOnlyPermission
+    ]
 
     def get_queryset(self):
         post = get_object_or_404(Post, id=self.kwargs['id'])

@@ -12,7 +12,7 @@ class PostSerializer(serializers.ModelSerializer):
     default = serializers.CurrentUserDefault()
 
     def create(self, validated_data):
-        validated_data['user'] = self.context['request'].user
+        validated_data['author'] = self.context['request'].user
         return super().create(validated_data)
 
     class Meta:
