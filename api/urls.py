@@ -7,13 +7,13 @@ from rest_framework.routers import DefaultRouter
 from .views import PostViewSet, CommentViewSet, FollowViewSet, GroupViewSet
 
 router = DefaultRouter()
-router.register('v1/posts', PostViewSet, 'Posts')
-router.register(r'v1/posts/(?P<id>[0-9]+)/comments', CommentViewSet, 'Post')
-router.register('v1/group', GroupViewSet, 'Group')
-router.register('v1/follow', FollowViewSet, basename='follows')
+router.register('posts', PostViewSet, 'Posts')
+router.register(r'posts/(?P<id>[0-9]+)/comments', CommentViewSet, 'Post')
+router.register('group', GroupViewSet, 'Group')
+router.register('follow', FollowViewSet, basename='follows')
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('v1/', include(router.urls)),
     path(
         'v1/token/',
         TokenObtainPairView.as_view(),
